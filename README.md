@@ -1,2 +1,2 @@
 # cse227-project
-## pro
+## Project proposal
