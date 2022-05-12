@@ -17,3 +17,13 @@ Literature Survey: Our project has some similarities with the Retrofitting Fine 
 
 ### How will you know if you have failed or succeeded?
 If we manage to sandbox without breaking functionality of the application then we will know we have succeeded.
+
+###
+Steps to build
+```
+mkdir build
+cd build
+cmake ../
+cd ../
+python3 cmult.py
+```
