@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/sbox.dir/sbox_cmult.cpp.o"
+  "CMakeFiles/sbox.dir/sbox_toylib.cpp.o"
   "libsbox.pdb"
   "libsbox.so"
 )

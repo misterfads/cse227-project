@@ -1,3 +1,3 @@
 file(REMOVE_RECURSE
-  "libcmult.a"
+  "libtoylib.a"
 )

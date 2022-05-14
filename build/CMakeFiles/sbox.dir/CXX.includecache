@@ -6,9 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/ian/Github/cse227-project/cmult.h
-
-/home/ian/Github/cse227-project/sbox_cmult.cpp
+/home/ian/Github/temp-cse227-project/sbox_toylib.cpp
 stdio.h
 -
 cassert
@@ -17,10 +15,12 @@ rlbox/rlbox.hpp
 -
 rlbox/rlbox_noop_sandbox.hpp
 -
-cmult.h
-/home/ian/Github/cse227-project/cmult.h
-sbox_cmult.h
-/home/ian/Github/cse227-project/sbox_cmult.h
+toylib.h
+/home/ian/Github/temp-cse227-project/toylib.h
+sbox_toylib.h
+/home/ian/Github/temp-cse227-project/sbox_toylib.h
 
-/home/ian/Github/cse227-project/sbox_cmult.h
+/home/ian/Github/temp-cse227-project/sbox_toylib.h
+
+/home/ian/Github/temp-cse227-project/toylib.h
 

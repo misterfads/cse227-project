@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/ian/Github/cse227-project/sbox_cmult.cpp" "/home/ian/Github/cse227-project/build/CMakeFiles/sbox.dir/sbox_cmult.cpp.o"
+  "/home/ian/Github/temp-cse227-project/sbox_toylib.cpp" "/home/ian/Github/temp-cse227-project/build/CMakeFiles/sbox.dir/sbox_toylib.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -19,7 +19,7 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
-  "/home/ian/Github/cse227-project/build/CMakeFiles/cmult.dir/DependInfo.cmake"
+  "/home/ian/Github/temp-cse227-project/build/CMakeFiles/toylib.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

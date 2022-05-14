@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/ian/Github/cse227-project
+CMAKE_SOURCE_DIR = /home/ian/Github/temp-cse227-project
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/ian/Github/cse227-project/build
+CMAKE_BINARY_DIR = /home/ian/Github/temp-cse227-project/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ian/Github/cse227-project/build/CMakeFiles /home/ian/Github/cse227-project/build/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ian/Github/temp-cse227-project/build/CMakeFiles /home/ian/Github/temp-cse227-project/build/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ian/Github/cse227-project/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ian/Github/temp-cse227-project/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -124,71 +124,71 @@ sbox/fast:
 .PHONY : sbox/fast
 
 #=============================================================================
-# Target rules for targets named cmult
+# Target rules for targets named toylib
 
 # Build rule for target.
-cmult: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 cmult
-.PHONY : cmult
+toylib: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 toylib
+.PHONY : toylib
 
 # fast build rule for target.
-cmult/fast:
-	$(MAKE) -f CMakeFiles/cmult.dir/build.make CMakeFiles/cmult.dir/build
-.PHONY : cmult/fast
+toylib/fast:
+	$(MAKE) -f CMakeFiles/toylib.dir/build.make CMakeFiles/toylib.dir/build
+.PHONY : toylib/fast
 
-cmult.o: cmult.c.o
+sbox_toylib.o: sbox_toylib.cpp.o
 
-.PHONY : cmult.o
-
-# target to build an object file
-cmult.c.o:
-	$(MAKE) -f CMakeFiles/cmult.dir/build.make CMakeFiles/cmult.dir/cmult.c.o
-.PHONY : cmult.c.o
-
-cmult.i: cmult.c.i
-
-.PHONY : cmult.i
-
-# target to preprocess a source file
-cmult.c.i:
-	$(MAKE) -f CMakeFiles/cmult.dir/build.make CMakeFiles/cmult.dir/cmult.c.i
-.PHONY : cmult.c.i
-
-cmult.s: cmult.c.s
-
-.PHONY : cmult.s
-
-# target to generate assembly for a file
-cmult.c.s:
-	$(MAKE) -f CMakeFiles/cmult.dir/build.make CMakeFiles/cmult.dir/cmult.c.s
-.PHONY : cmult.c.s
-
-sbox_cmult.o: sbox_cmult.cpp.o
-
-.PHONY : sbox_cmult.o
+.PHONY : sbox_toylib.o
 
 # target to build an object file
-sbox_cmult.cpp.o:
-	$(MAKE) -f CMakeFiles/sbox.dir/build.make CMakeFiles/sbox.dir/sbox_cmult.cpp.o
-.PHONY : sbox_cmult.cpp.o
+sbox_toylib.cpp.o:
+	$(MAKE) -f CMakeFiles/sbox.dir/build.make CMakeFiles/sbox.dir/sbox_toylib.cpp.o
+.PHONY : sbox_toylib.cpp.o
 
-sbox_cmult.i: sbox_cmult.cpp.i
+sbox_toylib.i: sbox_toylib.cpp.i
 
-.PHONY : sbox_cmult.i
+.PHONY : sbox_toylib.i
 
 # target to preprocess a source file
-sbox_cmult.cpp.i:
-	$(MAKE) -f CMakeFiles/sbox.dir/build.make CMakeFiles/sbox.dir/sbox_cmult.cpp.i
-.PHONY : sbox_cmult.cpp.i
+sbox_toylib.cpp.i:
+	$(MAKE) -f CMakeFiles/sbox.dir/build.make CMakeFiles/sbox.dir/sbox_toylib.cpp.i
+.PHONY : sbox_toylib.cpp.i
 
-sbox_cmult.s: sbox_cmult.cpp.s
+sbox_toylib.s: sbox_toylib.cpp.s
 
-.PHONY : sbox_cmult.s
+.PHONY : sbox_toylib.s
 
 # target to generate assembly for a file
-sbox_cmult.cpp.s:
-	$(MAKE) -f CMakeFiles/sbox.dir/build.make CMakeFiles/sbox.dir/sbox_cmult.cpp.s
-.PHONY : sbox_cmult.cpp.s
+sbox_toylib.cpp.s:
+	$(MAKE) -f CMakeFiles/sbox.dir/build.make CMakeFiles/sbox.dir/sbox_toylib.cpp.s
+.PHONY : sbox_toylib.cpp.s
+
+toylib.o: toylib.c.o
+
+.PHONY : toylib.o
+
+# target to build an object file
+toylib.c.o:
+	$(MAKE) -f CMakeFiles/toylib.dir/build.make CMakeFiles/toylib.dir/toylib.c.o
+.PHONY : toylib.c.o
+
+toylib.i: toylib.c.i
+
+.PHONY : toylib.i
+
+# target to preprocess a source file
+toylib.c.i:
+	$(MAKE) -f CMakeFiles/toylib.dir/build.make CMakeFiles/toylib.dir/toylib.c.i
+.PHONY : toylib.c.i
+
+toylib.s: toylib.c.s
+
+.PHONY : toylib.s
+
+# target to generate assembly for a file
+toylib.c.s:
+	$(MAKE) -f CMakeFiles/toylib.dir/build.make CMakeFiles/toylib.dir/toylib.c.s
+.PHONY : toylib.c.s
 
 # Help Target
 help:
@@ -199,13 +199,13 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... sbox"
-	@echo "... cmult"
-	@echo "... cmult.o"
-	@echo "... cmult.i"
-	@echo "... cmult.s"
-	@echo "... sbox_cmult.o"
-	@echo "... sbox_cmult.i"
-	@echo "... sbox_cmult.s"
+	@echo "... toylib"
+	@echo "... sbox_toylib.o"
+	@echo "... sbox_toylib.i"
+	@echo "... sbox_toylib.s"
+	@echo "... toylib.o"
+	@echo "... toylib.i"
+	@echo "... toylib.s"
 .PHONY : help
 
 

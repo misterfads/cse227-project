@@ -120,5 +120,5 @@ set(CMAKE_MAKEFILE_PRODUCTS
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/sbox.dir/DependInfo.cmake"
-  "CMakeFiles/cmult.dir/DependInfo.cmake"
+  "CMakeFiles/toylib.dir/DependInfo.cmake"
   )

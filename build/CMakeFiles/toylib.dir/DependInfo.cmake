@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/home/ian/Github/cse227-project/cmult.c" "/home/ian/Github/cse227-project/build/CMakeFiles/cmult.dir/cmult.c.o"
+  "/home/ian/Github/temp-cse227-project/toylib.c" "/home/ian/Github/temp-cse227-project/build/CMakeFiles/toylib.dir/toylib.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 

@@ -6,7 +6,9 @@
 
 #IncludeRegexTransform: 
 
-/home/ian/Github/cse227-project/cmult.c
+/home/ian/Github/temp-cse227-project/toylib.c
 stdio.h
+-
+string.h
 -
 

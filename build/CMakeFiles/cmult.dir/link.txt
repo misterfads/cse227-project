@@ -1,2 +1,0 @@
-/usr/bin/ar qc libcmult.a  CMakeFiles/cmult.dir/cmult.c.o
-/usr/bin/ranlib libcmult.a

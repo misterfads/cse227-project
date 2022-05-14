@@ -6,8 +6,8 @@ project(rlbox_cmake_test
 
 find_package(rlbox-sandboxing-api CONFIG REQUIRED)
 
-add_library(cmult cmult.c)
-add_library(sbox SHARED sbox_cmult.cpp)
+add_library(toylib toylib.c)
+add_library(sbox SHARED sbox_toylib.cpp)
 
 #add_executable(main main.cpp)
-target_link_libraries(sbox rlbox-sandboxing-api cmult)
+target_link_libraries(sbox rlbox-sandboxing-api toylib)

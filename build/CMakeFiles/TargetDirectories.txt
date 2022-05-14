@@ -1,4 +1,4 @@
-/home/ian/Github/cse227-project/build/CMakeFiles/rebuild_cache.dir
-/home/ian/Github/cse227-project/build/CMakeFiles/edit_cache.dir
-/home/ian/Github/cse227-project/build/CMakeFiles/sbox.dir
-/home/ian/Github/cse227-project/build/CMakeFiles/cmult.dir
+/home/ian/Github/temp-cse227-project/build/CMakeFiles/rebuild_cache.dir
+/home/ian/Github/temp-cse227-project/build/CMakeFiles/edit_cache.dir
+/home/ian/Github/temp-cse227-project/build/CMakeFiles/sbox.dir
+/home/ian/Github/temp-cse227-project/build/CMakeFiles/toylib.dir
