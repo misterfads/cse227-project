@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/ian/Github/cse227-project/cmult.h
+
+/home/ian/Github/cse227-project/sbox_cmult.cpp
+stdio.h
+-
+cassert
+-
+rlbox/rlbox.hpp
+-
+rlbox/rlbox_noop_sandbox.hpp
+-
+cmult.h
+/home/ian/Github/cse227-project/cmult.h
+sbox_cmult.h
+/home/ian/Github/cse227-project/sbox_cmult.h
+
+/home/ian/Github/cse227-project/sbox_cmult.h
+

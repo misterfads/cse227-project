@@ -19,7 +19,7 @@ using namespace rlbox;
 RLBOX_DEFINE_BASE_TYPES_FOR(cmult, noop);
 
 
-float sandboxed_cmult() {
+float sandboxed_cmult(int x, float y) {
 // ANCHOR_END: imports
 // ANCHOR: hello
   // Declare and create a new sandbox
@@ -28,8 +28,13 @@ float sandboxed_cmult() {
 
 // ANCHOR: add
   // call the add function and check the result:
-  auto val = sandbox.invoke_sandbox_function(cmult, 3, 4.0);
-  printf("cmult 3*4.0 = %f\n", val);
+  // auto val = sandbox.invoke_sandbox_function(cmult, 3, 4.0);
+  // printf("cmult 3*4.0 = %.3f\n", val);
+  float result = sandbox.invoke_sandbox_function(cmult, x, y)
+                    .copy_and_verify([](float ret){
+      printf("Adding... 3+4 = %.3f\n", ret);
+      return ret;
+    });
 
 // ANCHOR_END: add
 
@@ -38,6 +43,6 @@ float sandboxed_cmult() {
   // destroy sandbox
   sandbox.destroy_sandbox();
 
-  return 12.0;
+  return result;
 }
 // ANCHOR_END: main-end
