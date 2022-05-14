@@ -24,6 +24,7 @@ Steps to build
 mkdir build
 cd build
 cmake ../
+make
 cd ../
 python3 cmult.py
 ```
