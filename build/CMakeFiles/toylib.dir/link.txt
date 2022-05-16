@@ -1,2 +1,0 @@
-/usr/bin/ar qc libtoylib.a  CMakeFiles/toylib.dir/toylib.c.o
-/usr/bin/ranlib libtoylib.a

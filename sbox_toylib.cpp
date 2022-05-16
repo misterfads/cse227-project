@@ -60,7 +60,7 @@ int sandboxed_cgetstrlen(char *s)
   return result;
 }
 
-char* sandboxed_cstrconcat(char *s1, char *s2)
+void sandboxed_cstrconcat(char *s1, char *s2, char *res)
 {
   rlbox_sandbox_toylib sandbox;
   sandbox.create_sandbox();
@@ -76,16 +76,16 @@ char* sandboxed_cstrconcat(char *s1, char *s2)
               .unverified_safe_pointer_because(s2Size, "writing to region"),
           s2, s2Size);
 
-  // unique_ptr<char> utaintedS1(taintedS1);
-  //Line 82 is not working I am not sure what type to use, or if
-  //I have to use move or unique_ptr somehow
   auto result = sandbox.invoke_sandbox_function(c_strconcat, taintedS1, taintedS2)
-                     .copy_and_verify([](unique_ptr<char> ret)
+                     .copy_and_verify_string([](unique_ptr<char []> ret)
                                       {
-      // printf("Concatted string is %s\n", ret);
       
       return ret; });
   printf("Concatenated string is %s \n", result.get());
   sandbox.destroy_sandbox();
-  return result.get();
+  int i= 0;
+  while(result.get()[i] != '\0'){
+    res[i] = result.get()[i];
+    i++;
+  }
 }
