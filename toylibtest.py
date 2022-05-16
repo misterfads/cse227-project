@@ -20,10 +20,11 @@ if __name__ == "__main__":
     print(f'String length (python): {res:d}')
 
     c_lib.sandboxed_cstrconcat.restype = c_char_p
-    c_lib.sandboxed_cgetstrlen.argtypes = [c_char_p, c_char_p]
-    res = c_lib.sandboxed_cgetstrlen(\
+    c_lib.sandboxed_cstrconcat.argtypes = [c_char_p, c_char_p]
+    res = c_lib.sandboxed_cstrconcat(\
         create_string_buffer(b'foo'), create_string_buffer(b'barr'))
-    print(f'Concatted string (python): {res:s}')
+    decoded_res = res.decode()
+    print(f'Concatted string (python): {decoded_res}')
 
     #test lists
 

@@ -67,7 +67,7 @@ char* sandboxed_cstrconcat(char *s1, char *s2)
   size_t s1Size = strlen(s1) + 1;
   size_t s2Size = strlen(s2) + 1;
 
-  tainted_toylib<char *> taintedS1 = sandbox.malloc_in_sandbox<char>(s1Size);
+  tainted_toylib<char *> taintedS1 = sandbox.malloc_in_sandbox<char>(s1Size + s2Size);
   tainted_toylib<char *> taintedS2 = sandbox.malloc_in_sandbox<char>(s2Size);
   strncpy(taintedS1
               .unverified_safe_pointer_because(s1Size, "writing to region"),
@@ -79,13 +79,13 @@ char* sandboxed_cstrconcat(char *s1, char *s2)
   // unique_ptr<char> utaintedS1(taintedS1);
   //Line 82 is not working I am not sure what type to use, or if
   //I have to use move or unique_ptr somehow
-  char result[] = sandbox.invoke_sandbox_function(c_strconcat, taintedS1, taintedS2)
-                     .copy_and_verify([](std::unique_ptr<char> ret)
+  auto result = sandbox.invoke_sandbox_function(c_strconcat, taintedS1, taintedS2)
+                     .copy_and_verify([](unique_ptr<char> ret)
                                       {
       // printf("Concatted string is %s\n", ret);
       
       return ret; });
-
+  printf("Concatenated string is %s \n", result.get());
   sandbox.destroy_sandbox();
-  return result;
+  return result.get();
 }
