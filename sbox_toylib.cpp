@@ -89,3 +89,24 @@ void sandboxed_cstrconcat(char *s1, char *s2, char *res)
     i++;
   }
 }
+
+ToyOutClass *sandboxed_cgetclass(ToyInClass *c) {
+  // printf("x is %d\n", c->x);
+  rlbox_sandbox_toylib sandbox;
+  sandbox.create_sandbox();
+  auto inSize = sizeof(ToyInClass);
+  tainted_toylib<ToyInClass *> tainted = sandbox.malloc_in_sandbox<ToyInClass>(inSize);
+  std::memcpy(tainted.unverified_safe_pointer_because(inSize, "writing to region"),
+          c, inSize);
+  //ToyInClass *in = reinterpret_cast<ToyInClass *>(tainted.unverified_safe_pointer_because(inSize, "writing to region"));
+  //printf("x issss %d\n", in->x);
+
+  unsigned long res = sandbox.invoke_sandbox_function(c_getclass, tainted)
+                .copy_and_verify_address([] (unsigned long r) {
+                  return r;
+                });
+  ToyOutClass *out = reinterpret_cast<ToyOutClass *>(res);
+  // printf("x issss %d\n", out->z);
+  sandbox.destroy_sandbox();
+  return out;
+}

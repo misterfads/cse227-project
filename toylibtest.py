@@ -30,3 +30,21 @@ if __name__ == "__main__":
 
 
     #test classes
+    class ToyInClass(Structure):
+        _fields_ = [("x", c_int), ("y", c_float)]
+    class ToyOutClass(Structure):
+        _fields_ = [("w", c_float), ("z", c_int)] 
+    
+    #after calling the function we will receive a return type of
+    #ToyOutClass, also containing fields int, float, string
+    # cast(create_string_buffer(b'hello hey hi'), c_char_p)
+    inInstance = ToyInClass(29,7.25)
+    c_lib.sandboxed_cgetclass.argtypes = [c_void_p]
+    c_lib.sandboxed_cgetclass.restype = POINTER(ToyOutClass)
+    res = c_lib.sandboxed_cgetclass(byref(inInstance))
+    #print(f'x field of inInstance is: {res}')
+    #print(res)
+    #print(cast(res, ToyOutClass).contents)
+    print(f'ToyOutClass w field is {res.contents.w}, z field is {res.contents.z}')
+
+
