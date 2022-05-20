@@ -1,1 +1,10 @@
 /build/*
+.vscode
+*.h
+*.o
+*.wasm
+*.gz
+rlbox_wasm2c_sandbox
+wasm2c_sandbox_compiler
+wasi-sdk-12.0
+

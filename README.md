@@ -19,12 +19,19 @@ Literature Survey: Our project has some similarities with the Retrofitting Fine 
 If we manage to sandbox without breaking functionality of the application then we will know we have succeeded.
 
 ###
+Make sure you have llvm and clang installed. If not, install them via `apt-get install llvm` and `apt-get install clang` on Ubuntu or equivalent commands on other systems
+
 Steps to build
 ```
+./setup.sh
+./gen_wasm_lib.sh
 mkdir build
 cd build
 cmake ../
 make
 cd ../
-python3 cmult.py
+python3 toylibtest.py
 ```
+
+`setup.sh` will fetch the required compilers to compile the library from C to WASM and then back to C.
+`gen_wasm_lib.sh` will do the compilation of toylib.c to wasm and back to c.
