@@ -110,3 +110,20 @@ ToyOutClass *sandboxed_cgetclass(ToyInClass *c) {
   sandbox.destroy_sandbox();
   return out;
 }
+
+ToyOutList *sandboxed_cgetlist(ToyInList *l) {
+  rlbox_sandbox_toylib sandbox;
+  sandbox.create_sandbox();
+  auto inSize = sizeof(ToyInList);
+  tainted_toylib<ToyInLists *> tainted = sandbox.malloc_in_sandbox<ToyInList>(inSize);
+  std::memcpy(tainted.unverified_safe_pointer_because(inSize, "writing to region"),
+          l, inSize);
+
+  unsigned long res = sandbox.invoke_sandbox_function(c_getlist, tainted)
+                .copy_and_verify_address([] (unsigned long r) {
+                  return r;
+                });
+  ToyOutList *out = reinterpret_cast<ToyOutList *>(res);
+  sandbox.destroy_sandbox();
+  return out;
+}

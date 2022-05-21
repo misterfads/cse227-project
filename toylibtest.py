@@ -47,4 +47,9 @@ if __name__ == "__main__":
     #print(cast(res, ToyOutClass).contents)
     print(f'ToyOutClass w field is {res.contents.w}, z field is {res.contents.z}')
 
-
+    #test lists
+    c_lib.sandboxed_cgetstrlen.restype = c_int
+    c_lib.sandboxed_cgetstrlen.argtypes = [c_char_p]
+    res = c_lib.sandboxed_cgetstrlen(\
+        create_string_buffer(b'hello'))
+    print(f'String length (python): {res:d}')
