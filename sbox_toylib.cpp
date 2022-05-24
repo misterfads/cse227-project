@@ -30,7 +30,7 @@ float sandboxed_cmult(int x, float y)
   float result = sandbox.invoke_sandbox_function(c_mult, x, y)
                      .copy_and_verify([](float ret)
                                       {
-      printf("Adding... 3+4 = %.3f\n", ret);
+      // printf("Adding... 3+4 = %.3f\n", ret);
       return ret; });
 
   // destroy sandbox
@@ -53,7 +53,6 @@ int sandboxed_cgetstrlen(char *s)
   int result = sandbox.invoke_sandbox_function(c_getstrlen, taintedStr)
                    .copy_and_verify([](int ret)
                                     {
-      printf("Length of input string is %d\n", ret);
       return ret; });
 
   sandbox.destroy_sandbox();
@@ -81,7 +80,7 @@ void sandboxed_cstrconcat(char *s1, char *s2, char *res)
                                       {
       
       return ret; });
-  printf("Concatenated string is %s \n", result.get());
+  // printf("Concatenated string is %s \n", result.get());
   sandbox.destroy_sandbox();
   int i= 0;
   while(result.get()[i] != '\0'){
@@ -90,40 +89,69 @@ void sandboxed_cstrconcat(char *s1, char *s2, char *res)
   }
 }
 
-ToyOutClass *sandboxed_cgetclass(ToyInClass *c) {
+void sandboxed_cgetclass(ToyInClass *c, ToyOutClass *res) {
   // printf("x is %d\n", c->x);
   rlbox_sandbox_toylib sandbox;
   sandbox.create_sandbox();
   auto inSize = sizeof(ToyInClass);
+  auto outSize = sizeof(ToyOutClass);
   tainted_toylib<ToyInClass *> tainted = sandbox.malloc_in_sandbox<ToyInClass>(inSize);
   std::memcpy(tainted.unverified_safe_pointer_because(inSize, "writing to region"),
           c, inSize);
+  tainted_toylib<ToyOutClass *> taintedRes = sandbox.malloc_in_sandbox<ToyOutClass>(outSize);
+  std::memcpy(taintedRes.unverified_safe_pointer_because(outSize, "writing to region"),
+          res, outSize);
   //ToyInClass *in = reinterpret_cast<ToyInClass *>(tainted.unverified_safe_pointer_because(inSize, "writing to region"));
   //printf("x issss %d\n", in->x);
 
-  unsigned long res = sandbox.invoke_sandbox_function(c_getclass, tainted)
-                .copy_and_verify_address([] (unsigned long r) {
-                  return r;
-                });
-  ToyOutClass *out = reinterpret_cast<ToyOutClass *>(res);
+  // unsigned long res = sandbox.invoke_sandbox_function(c_getclass, tainted)
+  //               .copy_and_verify_address([] (unsigned long r) {
+  //                 return r;
+  //               });
+  sandbox.invoke_sandbox_function(c_getclass, tainted, taintedRes);
+  ToyOutClass *out = reinterpret_cast<ToyOutClass *>(taintedRes.unverified_safe_pointer_because(outSize, "writing to region"));
+  res->w = out->w;
+  res->z = out->z;
   // printf("x issss %d\n", out->z);
   sandbox.destroy_sandbox();
-  return out;
+  return;
 }
 
-ToyOutList *sandboxed_cgetlist(ToyInList *l) {
+void sandboxed_crevlist(int* inList, int* outList, int size) {
   rlbox_sandbox_toylib sandbox;
   sandbox.create_sandbox();
-  auto inSize = sizeof(ToyInList);
-  tainted_toylib<ToyInLists *> tainted = sandbox.malloc_in_sandbox<ToyInList>(inSize);
-  std::memcpy(tainted.unverified_safe_pointer_because(inSize, "writing to region"),
-          l, inSize);
-
-  unsigned long res = sandbox.invoke_sandbox_function(c_getlist, tainted)
-                .copy_and_verify_address([] (unsigned long r) {
-                  return r;
-                });
-  ToyOutList *out = reinterpret_cast<ToyOutList *>(res);
-  sandbox.destroy_sandbox();
-  return out;
+  size_t bSize = size*sizeof(int);
+  tainted_toylib<int*> taintedIn = sandbox.malloc_in_sandbox<int>(bSize);
+  std::memcpy(taintedIn.unverified_safe_pointer_because(bSize, "writing to region"),
+          inList, bSize);
+  tainted_toylib<int*> taintedOut = sandbox.malloc_in_sandbox<int>(bSize);
+  std::memcpy(taintedOut.unverified_safe_pointer_because(bSize, "writing to region"),
+          outList, bSize);
+  sandbox.invoke_sandbox_function(c_revlist, taintedIn, taintedOut, size);
+  int *out = reinterpret_cast<int*>(taintedOut.unverified_safe_pointer_because(bSize, "writing to region"));
+  for (int i = 0; i < size; i++) {
+    outList[i] = out[i];
+  }
+  return;
 }
+
+
+
+
+
+// ToyOutList *sandboxed_cgetlist(ToyInList *l) {
+//   rlbox_sandbox_toylib sandbox;
+//   sandbox.create_sandbox();
+//   auto inSize = sizeof(ToyInList);
+//   tainted_toylib<ToyInLists *> tainted = sandbox.malloc_in_sandbox<ToyInList>(inSize);
+//   std::memcpy(tainted.unverified_safe_pointer_because(inSize, "writing to region"),
+//           l, inSize);
+
+//   unsigned long res = sandbox.invoke_sandbox_function(c_getlist, tainted)
+//                 .copy_and_verify_address([] (unsigned long r) {
+//                   return r;
+//                 });
+//   ToyOutList *out = reinterpret_cast<ToyOutList *>(res);
+//   sandbox.destroy_sandbox();
+//   return out;
+// }

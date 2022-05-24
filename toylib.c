@@ -15,8 +15,8 @@ struct ToyOutClass {
 // cmult.c
 float c_mult(int int_param, float float_param) {
     float return_value = int_param * float_param;
-    printf("    In cmult : int: %d float %.1f returning  %.1f\n", int_param,
-            float_param, return_value);
+    // printf("    In cmult : int: %d float %.1f returning  %.1f\n", int_param,
+    //         float_param, return_value);
     return return_value;
 }
 
@@ -33,9 +33,15 @@ char* c_strconcat(char *s1, char *s2) {
 }
 
 
-struct ToyOutClass *c_getclass(struct ToyInClass *c) {
-    struct ToyOutClass *res = malloc(sizeof(struct ToyOutClass));
+void c_getclass(struct ToyInClass *c, struct ToyOutClass *res) {
+    // struct ToyOutClass *res = malloc(sizeof(struct ToyOutClass));
     res->w = (c->y)*1.5;
     res->z = c->x + 5;
-    return res;
+    return;
+}
+
+void c_revlist(int* inList, int *outList, int size) {
+    for (int i = 0; i < size; i++) {
+        outList[size-1-i] = inList[i];
+    }
 }
