@@ -9,12 +9,6 @@ if __name__ == "__main__":
     c_lib = CDLL(libname)
     #print(c_lib.__dict_)
     
-    # test numbers function
-    # c_lib.sandboxed_cmult.restype = c_float
-    # integer = 3
-    # flote = 4.31
-    # res = c_lib.sandboxed_cmult(3, c_float(flote))
-    # print(f'Multiplying {integer} and {flote}: {res:.3f}')
 
     #test strings
     # c_lib.sandboxed_cgetstrlen.restype = c_int
@@ -28,14 +22,6 @@ if __name__ == "__main__":
     # c_lib.sandboxed_cstrconcat(\
     #     create_string_buffer(b'foo'), create_string_buffer(b'barr'), res)
     # print(f'Concatted string of foo and barr: {res.value.decode()}')
-
-    #test lists
-    # FiveIntArr = c_int*5
-    # c_lib.sandboxed_crevlist.argtypes = [FiveIntArr, FiveIntArr]
-    # inList = FiveIntArr(1,2,3,4,5)
-    # outList = FiveIntArr()
-    # c_lib.sandboxed_crevlist(inList, outList, 5)
-    # print('Reversed list of', list(inList), 'is:', list(outList))
 
     #try list sizes 2,4,8,16,32,64,128,256,512, 1024
     listSizes = [i*10 for i in range(5,10050,50)]
@@ -76,8 +62,6 @@ if __name__ == "__main__":
     plt.show()
         
 
-
-    #try just sandboxing numerical operation
 
 
 
