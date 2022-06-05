@@ -9,11 +9,15 @@ set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 add_library(toylib toylib.c)
 add_library(toylibwasm toylibwasm.c)
 target_include_directories(toylibwasm PRIVATE ${CMAKE_SOURCE_DIR}/wasm2c_sandbox_compiler/wasm2c/)
+target_include_directories(toylibwasm PRIVATE ${CMAKE_SOURCE_DIR}/rlbox_wasm2c_sandbox/include/)
 
 add_library(wasm-rt-impl wasm2c_sandbox_compiler/wasm2c/wasm-rt-impl.c)
 add_library(wasm-rt-wasi wasm2c_sandbox_compiler/wasm2c/wasm-rt-wasi.c)
 add_library(wasm-rt-os-unix wasm2c_sandbox_compiler/wasm2c/wasm-rt-os-unix.c)
-add_library(wasmsbox SHARED sbox_toylib.cpp)
+add_library(wasmsbox SHARED wasmsbox_toylib.cpp)
+target_include_directories(wasmsbox PRIVATE ${CMAKE_SOURCE_DIR}/wasm2c_sandbox_compiler/wasm2c/)
+target_include_directories(wasmsbox PRIVATE ${CMAKE_SOURCE_DIR}/rlbox_wasm2c_sandbox/include/)
+target_include_directories(wasmsbox PRIVATE /usr/local/include/rlbox/)
 add_library(sbox SHARED sbox_toylib.cpp)
 
 # generate two .so files
