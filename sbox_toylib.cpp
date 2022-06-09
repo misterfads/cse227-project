@@ -77,10 +77,8 @@ void sandboxed_cstrconcat(char *s1, char *s2, char *res)
 
   auto result = sandbox.invoke_sandbox_function(c_strconcat, taintedS1, taintedS2)
                      .copy_and_verify_string([](unique_ptr<char []> ret)
-                                      {
-      
-      return ret; });
-  // printf("Concatenated string is %s \n", result.get());
+                                      {return ret; });
+
   sandbox.destroy_sandbox();
   int i= 0;
   while(result.get()[i] != '\0'){
