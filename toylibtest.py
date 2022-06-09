@@ -10,9 +10,9 @@ if __name__ == "__main__":
     # test numbers function
     c_lib.sandboxed_cmult.restype = c_float
     c_lib.sandboxed_cmult.argtypes = [c_int, c_float]
-    integer = 3
-    flote = 4.31
-    res = c_lib.sandboxed_cmult(3, c_float(flote))
+    intArg = 3
+    floatArg = 4.31
+    res = c_lib.sandboxed_cmult(intArg, c_float(floatArg))
     print(f'Multiplying {integer} and {flote}: {res:.3f}')
 
     #test strings
