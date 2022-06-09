@@ -9,6 +9,7 @@ if __name__ == "__main__":
     
     # test numbers function
     c_lib.sandboxed_cmult.restype = c_float
+    c_lib.sandboxed_cmult.argtypes = [c_int, c_float]
     integer = 3
     flote = 4.31
     res = c_lib.sandboxed_cmult(3, c_float(flote))
